@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:apidemoo/api2/alert.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dataModel.dart';
@@ -13,7 +12,7 @@ class Productdemo extends StatefulWidget {
 }
 
 class _ProductdemoState extends State<Productdemo> {
-  bool _Isloding = false;
+  bool _isloding = false;
 
   DataModel? datafromApi;
   _getData() async {
@@ -22,7 +21,7 @@ class _ProductdemoState extends State<Productdemo> {
       http.Response res = await http.get(Uri.parse(ApiUrl));
       if (res.statusCode == 200) {
         datafromApi = DataModel.fromJson(jsonDecode(res.body));
-        _Isloding = false;
+        _isloding = false;
         setState(() {});
       }
     } catch (e) {
@@ -43,13 +42,13 @@ class _ProductdemoState extends State<Productdemo> {
         appBar: AppBar(
           title: Text('Product API'),
         ),
-        body: _Isloding
+        body: _isloding
             ? Center(
                 child: CircularProgressIndicator(),
               )
             : ListView.builder(
                 scrollDirection: Axis.vertical,
-                itemCount: datafromApi!.products.length,
+                itemCount: datafromApi?.products.length,
                 itemBuilder: (context, index) {
                   return Row(
                     children: [

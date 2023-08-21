@@ -24,8 +24,9 @@ class _UserdemoApiState extends State<UserdemoApi> {
     var data = jsonDecode(response.body.toString());
     if (response.statusCode == 200) {
       for (Map<String, dynamic> i in data) {
-        print(['name']);
+        print(['Before add']);
         userList.add(UserModel.fromJson(i));
+        print(userList);
       }
       return userList;
     } else {
